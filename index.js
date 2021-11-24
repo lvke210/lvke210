@@ -1,5 +1,6 @@
 const child = document.querySelector(".childbar").getElementsByTagName("div");
 const home = document.querySelector("#home");
+const totop = document.querySelector("#totop");
 for (let i = 0; i < child.length; i++) {
   child[i].addEventListener("click", function (item) {
     for (let j = 0; j < child.length; j++) {
@@ -19,11 +20,11 @@ window.onscroll = () => {
     timer = undefined;
   }
   timer = setTimeout(() => {
-    if (isBottom()) {
+    if (isBottom(50)) {
       getJoke();
-      console.log("num", num);
     }
   }, 1000);
+  totop.style.display = document.documentElement.scrollTop > 300 ? "block" : "none";
 };
 
 // 请求笑话
@@ -45,7 +46,7 @@ function getJoke() {
           </div>
         </div>
         <div class="block-footer">
-        <img src="./static/2.gif" style="height:50px" alt="">-------------------<img src="./static/1.gif" style="height:50px" alt="">
+        <img src="./static/2.gif" style="height:50px" alt="">-------------------
         </div>
         `;
         block = document.createElement("div");
@@ -56,7 +57,7 @@ function getJoke() {
   }
 }
 
-const isBottom = () => {
+const isBottom = (distance) => {
   // 滚动过的距离
   const scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
   //窗口高度
@@ -69,21 +70,32 @@ const isBottom = () => {
     document.body.scrollHeight,
     document.documentElement.scrollHeight
   );
-  return scrollTop + windowHeight + 50 > documentHeight;
+  return scrollTop + windowHeight + distance > documentHeight;
 };
 
 //节流函数
-
 function throttle(fn, delay) {
   let flag = true;
   return function () {
     flag = true;
+    let time;
     if (flag) {
-      clearInterval(timer);
-      const timer = setTimeout(() => {
+      clearInterval(time);
+      time = setTimeout(() => {
         fn.call(this);
         flag = false;
       }, delay);
     }
   };
 }
+//防抖函数
+
+//返回顶部
+totop.addEventListener("click", function () {
+  let tim = setInterval(() => {
+    let scrollTop = document.documentElement.scrollTop;
+    scrollTop > 0
+      ? (document.documentElement.scrollTop -= Math.max(scrollTop / 50, 30))
+      : clearInterval(tim);
+  }, 16);
+});
