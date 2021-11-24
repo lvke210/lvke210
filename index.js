@@ -35,18 +35,18 @@ function getJoke() {
       .then((val) => {
         let block;
         const str = `
-        <div class="block-title">天天开心</div>
-                <div class="flex block-content">
-                  <div class="block-left">
-                    <img src="https://picsum.photos/200/150?random=${num + i}" alt="" />
-                  </div>
-                  <div class="block-right">
-                   ${val ?? "网络不好，请稍后再试"}
-                  </div>
-                </div>
-                <div class="block-footer">
-                    --hello world
-                </div>
+        <div class="block-title"></div>
+        <div class="flex block-content">
+          <div class="block-left">
+            <img src="https://picsum.photos/200/150?random=${num + i}" alt="" />
+          </div>
+          <div class="block-right">
+           ${val ?? "网络不好，请稍后再试"}
+          </div>
+        </div>
+        <div class="block-footer">
+        <img src="./static/2.gif" style="height:50px" alt="">-------------------<img src="./static/1.gif" style="height:50px" alt="">
+        </div>
         `;
         block = document.createElement("div");
         block.className = "block";
