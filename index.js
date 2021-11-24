@@ -1,4 +1,5 @@
 const child = document.querySelector(".childbar").getElementsByTagName("div");
+const content = document.querySelectorAll(".content");
 const home = document.querySelector("#home");
 const totop = document.querySelector("#totop");
 for (let i = 0; i < child.length; i++) {
@@ -6,6 +7,8 @@ for (let i = 0; i < child.length; i++) {
     for (let j = 0; j < child.length; j++) {
       child[j].className = "";
       child[i].className = "active";
+      content[j].className = "content";
+      content[i].className = "content act";
     }
   });
 }

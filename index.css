@@ -94,7 +94,10 @@ html {
   background-color: rgb(178, 206, 209, 0.1);
   display: none;
 }
-:target {
+/* :target {
+  display: block;
+} */
+.act {
   display: block;
 }
 #home {
@@ -223,4 +226,8 @@ html {
   .nav {
     display: none;
   }
+}
+
+#tankCanvas {
+  background-color: rgb(146, 135, 135);
 }
