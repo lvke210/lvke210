@@ -9,17 +9,27 @@ for (let i = 0; i < child.length; i++) {
   });
 }
 let jokeList = []; //
+let num = 1; //请求随机图片的计数
+let timer;
 getJoke();
 
 window.onscroll = () => {
-  console.log(isBottom());
-  if (scrollTop() + windowHeight() + 50 > documentHeight()) {
-    getJoke();
+  if (timer) {
+    clearTimeout(timer);
+    timer = undefined;
   }
+  timer = setTimeout(() => {
+    if (isBottom()) {
+      getJoke();
+      console.log("num", num);
+    }
+  }, 1000);
 };
+
 // 请求笑话
 function getJoke() {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 3; i++) {
+    num++;
     fetch("https://autumnfish.cn/api/joke")
       .then((res) => res.text())
       .then((val) => {
@@ -28,7 +38,7 @@ function getJoke() {
         <div class="block-title">天天开心</div>
                 <div class="flex block-content">
                   <div class="block-left">
-                    <img src="https://picsum.photos/200/150?random=${i + 1}" alt="" />
+                    <img src="https://picsum.photos/200/150?random=${num + i}" alt="" />
                   </div>
                   <div class="block-right">
                    ${val ?? "网络不好，请稍后再试"}
@@ -46,35 +56,34 @@ function getJoke() {
   }
 }
 
-function scrollTop() {
-  return Math.max(
-    //chrome
-    document.body.scrollTop,
-    //firefox/IE
-    document.documentElement.scrollTop
-  );
-}
-//获取页面文档的总高度
-function documentHeight() {
-  //现代浏览器（IE9+和其他浏览器）和IE8的document.body.scrollHeight和document.documentElement.scrollHeight都可以
-  return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
-}
-
-function windowHeight() {
-  return document.compatMode == "CSS1Compat"
-    ? document.documentElement.clientHeight
-    : document.body.clientHeight;
-}
-
 const isBottom = () => {
+  // 滚动过的距离
   const scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+  //窗口高度
   const windowHeight =
     document.compatMode == "CSS1Compat"
       ? document.documentElement.clientHeight
       : document.body.clientHeight;
+  //获取页面文档的总高度
   const documentHeight = Math.max(
     document.body.scrollHeight,
     document.documentElement.scrollHeight
   );
   return scrollTop + windowHeight + 50 > documentHeight;
 };
+
+//节流函数
+
+function throttle(fn, delay) {
+  let flag = true;
+  return function () {
+    flag = true;
+    if (flag) {
+      clearInterval(timer);
+      const timer = setTimeout(() => {
+        fn.call(this);
+        flag = false;
+      }, delay);
+    }
+  };
+}
