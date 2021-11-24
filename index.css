@@ -184,15 +184,6 @@ html {
   font-size: 12px;
 }
 
-@media screen and (max-width: 400px) {
-  .bar div {
-    display: none;
-  }
-  .bar div:first-child {
-    display: block;
-    font-size: 16px;
-  }
-}
 #cw {
   position: fixed;
   z-index: -1;
@@ -219,4 +210,17 @@ html {
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(#101f1c, 0.5);
+}
+
+@media screen and (max-width: 1000px) {
+  /* .bar div {
+    display: none;
+  }
+  .bar div:first-child {
+    display: block;
+    font-size: 16px;
+  } */
+  .nav {
+    display: none;
+  }
 }

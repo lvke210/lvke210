@@ -12,7 +12,6 @@ for (let i = 0; i < child.length; i++) {
 let jokeList = []; //
 let num = 1; //请求随机图片的计数
 let timer;
-getJoke();
 
 window.onscroll = () => {
   if (timer) {
@@ -29,7 +28,7 @@ window.onscroll = () => {
 
 // 请求笑话
 function getJoke() {
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 5; i++) {
     num++;
     fetch("https://autumnfish.cn/api/joke")
       .then((res) => res.text())
@@ -56,7 +55,7 @@ function getJoke() {
       });
   }
 }
-
+getJoke();
 const isBottom = (distance) => {
   // 滚动过的距离
   const scrollTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
