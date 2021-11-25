@@ -41,11 +41,13 @@ window.onresize = function () {
   resize();
 };
 function resize() {
-  canvas.height = innerHeight;
-  canvas.width = innerWidth;
-  for (var i = 0; i < 100; i++) {
-    a[i] = new ob(innerWidth / 2, innerHeight / 2, 1, gc(), Math.random() * 200 + 20, 0.02);
-    //                  x               y          r/px  cc/color  o                   s
+  if (canvas) {
+    canvas.height = innerHeight;
+    canvas.width = innerWidth;
+    for (var i = 0; i < 100; i++) {
+      a[i] = new ob(innerWidth / 2, innerHeight / 2, 1, gc(), Math.random() * 200 + 20, 0.02);
+      //                  x               y          r/px  cc/color  o                   s
+    }
   }
 }
 function ob(x, y, r, cc, o, s) {

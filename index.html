@@ -45,7 +45,19 @@
         </div>
         <div class="nav">
           <img src="./static/3.gif" style="width: 100%" alt="" />
+          <div id="test">
+            <div id="hatbox" ondrop="drop(event)" ondragover="dragover(event)">
+              <div id="hat" draggable="true"></div>
+            </div>
+            <div
+              id="light"
+              ondrop="drop(event)"
+              ondragover="dragover(event)"
+              draggable="false"
+            ></div>
+          </div>
           <audio
+            id="audio"
             style="margin: 0 auto; display: block"
             src="./static/The Ludlows.mp3"
             controls

@@ -5,6 +5,9 @@
 }
 html {
 }
+#span {
+  color: white;
+}
 .flex {
   display: flex;
 }
@@ -14,6 +17,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: 0.5s;
 }
 .header {
   line-height: 50px;
@@ -216,16 +220,40 @@ html {
 }
 
 @media screen and (max-width: 1000px) {
-  /* .bar div {
-    display: none;
-  }
-  .bar div:first-child {
-    display: block;
-    font-size: 16px;
-  } */
   .nav {
     display: none;
   }
+}
+
+#test {
+  display: flex;
+  position: fixed;
+  top: 10px;
+  right: 10%;
+}
+
+#test:hover::after {
+  content: "戴上?";
+  position: absolute;
+  font-size: 12px;
+  margin-left: 60px;
+  margin-top: 50px;
+  color: aliceblue;
+}
+#hatbox {
+  width: 100px;
+  height: 100px;
+}
+#hat {
+  width: 100%;
+  height: 100%;
+  background: url("../static/hat.png") no-repeat;
+  background-size: contain;
+}
+#light {
+  width: 100%;
+  background: url("../static/light.png") no-repeat;
+  background-size: contain;
 }
 
 #tankCanvas {

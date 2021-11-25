@@ -1,7 +1,6 @@
+const wrap = document.querySelector(".wrap");
 const child = document.querySelector(".childbar").getElementsByTagName("div");
 const content = document.querySelectorAll(".content");
-const home = document.querySelector("#home");
-const totop = document.querySelector("#totop");
 for (let i = 0; i < child.length; i++) {
   child[i].addEventListener("click", function (item) {
     for (let j = 0; j < child.length; j++) {
@@ -101,3 +100,30 @@ totop.addEventListener("click", function () {
       : clearInterval(tim);
   }, 16);
 });
+
+//点击之后才会播放背景音乐
+window.onclick = () => {
+  audio.play();
+};
+
+//开关灯效果
+let moon = false;
+
+light.addEventListener("click", (event) => {
+  drop(event);
+});
+function drop(event) {
+  moon = !moon;
+  if (moon) {
+    event.target.appendChild(hat);
+    wrap.style.backgroundColor = "rgba(44, 62, 80,1.0)";
+    wrap.style.color = "white";
+  } else {
+    hatbox.appendChild(hat);
+    wrap.style.backgroundColor = "white";
+    wrap.style.color = "black";
+  }
+}
+function dragover(event) {
+  event.preventDefault();
+}
