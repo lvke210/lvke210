@@ -7,13 +7,30 @@
 const express = require("express");
 const { read, db } = require("./utils");
 const app = express();
-
+var bodyParser = require("body-parser");
 //静态资源
+app.all("*", function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type,Content-Length, Authorization, Accept,X-Requested-With"
+  );
+  res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By", " 3.2.1");
+  if (req.method == "OPTIONS") res.send(200);
+  /*让options请求快速返回*/ else next();
+});
 app.use("/static", express.static(__dirname + "/static"));
-
+var server = require("http").createServer(app);
+app.use(bodyParser.json({ limit: "1mb" }));
 const user = require("./manage/user");
 const blog = require("./manage/blog");
-
+app.use(
+  bodyParser.urlencoded({
+    //此项必须在 bodyParser.json 下面,为参数编码
+    extended: true,
+  })
+);
 // 首页
 // app.get("/",(req,res)=>{
 //   read("pages/index.html").then((resp)=>{
@@ -51,8 +68,16 @@ app.listen(3000, () => {
 
 // 获取树洞列表信息
 app.get("/api/getHoleList", (req, res) => {
-  const sql = "select * from t_hole";
+  const sql = "select * from t_hole order by id desc";
   db(sql).then((ress) => {
+    console.log(ress);
     res.send(ress);
+  });
+});
+
+app.post("/api/addHole", (req, res, next) => {
+  const sql = " insert into t_hole set ?";
+  db(sql, req.body).then((result) => {
+    res.send(result);
   });
 });

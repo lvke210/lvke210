@@ -262,10 +262,11 @@ html {
 
 #textarea {
   width: 100%;
-  border: none;
+  border: 1px solid rgb(228, 222, 222);
   opacity: 0.8;
   border-radius: 5px;
   padding: 5px;
+  margin: 20px 0;
 }
 #textarea:focus {
   outline: none;
@@ -281,4 +282,30 @@ html {
 .button:hover {
   cursor: pointer;
   background-color: #bbecf3;
+}
+.message {
+  position: absolute;
+  top: 20%;
+  margin-left: 50%;
+  background-color: rgb(134, 218, 139);
+  padding: 5px 10px;
+  border-radius: 5px;
+  animation: appear 3s linear 1;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
 }

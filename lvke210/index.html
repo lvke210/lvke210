@@ -47,23 +47,16 @@
         <div id="hole" class="content">
           <textarea name="" id="textarea" rows="3"></textarea>
           <div class="button" id="holebtn">扔进洞里</div>
-          <div class="block">
-            <div class="block-title"></div>
-            <div class="flex block-content">
-              <div class="block-left">
-                <img src="https://picsum.photos/200/150?random=${num + i}" alt="" />
-              </div>
-              <div class="block-right">${val ?? "网络不好，请稍后再试"}</div>
-            </div>
-            <div class="block-footer">-------------------</div>
-          </div>
+          <div id="holeBox"></div>
         </div>
         <div class="nav">
           <img src="./static/3.gif" style="width: 100%" alt="" />
+
           <div id="test">
             <div id="hatbox" ondrop="drop(event)" ondragover="dragover(event)">
               <div id="hat" draggable="true"></div>
             </div>
+
             <div
               id="light"
               ondrop="drop(event)"
@@ -90,5 +83,6 @@
     <script src="./js/index.js"></script>
     <script src="./js/canvas.js"></script>
     <script src="./js/hole.js"></script>
+    <script src="./js/utils.js"></script>
   </body>
 </html>

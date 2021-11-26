@@ -1,11 +1,46 @@
+const host = "http://127.0.0.1:3000";
+// const host = "http://119.3.26.182:3000";
+// 获取树洞列表
 function getHoleList() {
-  fetch("http://119.3.26.182:3000/api/getHoleList").then((res) => console.log(res));
-  // .then((data) => {
-  //   console.log(data);
-  // });
+  fetch(`${host}/api/getHoleList`)
+    .then((res) => res.json())
+    .then((res) => {
+      res.map((item) => {
+        let str = "";
+        let block;
+        str += `
+              <div class="block-title"></div>
+              <div class="flex block-content">
+                <div class="block-left">
+                  <img src="https://picsum.photos/200/150?random=${item.id}" alt="" />
+                </div>
+                <div class="block-right">${item.content}</div>
+              </div>
+              <div class="block-footer">----------------${formatDate(
+                new Date(item.create_time)
+              )}---</div>
+        `;
+        block = document.createElement("div");
+        block.className = "block";
+        block.innerHTML = str;
+        holeBox.appendChild(block);
+      });
+    });
 }
-// getHoleList();
-holebtn.addEventListener("click", () => {
-  console.log(1);
-  getHoleList();
+getHoleList();
+// 新增留言
+holebtn.addEventListener("click", async () => {
+  const content = textarea.value;
+  const time = new Date();
+  await fetch(`${host}/api/addHole`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ content, create_time: time }),
+  });
+  textarea.value = "";
+  message();
+  holeBox.innerHTML = ""; //先清空列表
+  getHoleList(); //再重新请求列表
 });
