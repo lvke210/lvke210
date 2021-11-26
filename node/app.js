@@ -48,3 +48,11 @@ app.get("/addUser", (req, res) => {
 app.listen(3000, () => {
   console.log("server is start at: 127.0.0.1:3000");
 });
+
+// 获取树洞列表信息
+app.get("/api/getHoleList", (req, res) => {
+  const sql = "select * from t_hole";
+  db(sql).then((ress) => {
+    res.send(ress);
+  });
+});

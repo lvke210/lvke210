@@ -259,3 +259,26 @@ html {
 #tankCanvas {
   background-color: rgb(146, 135, 135);
 }
+
+#textarea {
+  width: 100%;
+  border: none;
+  opacity: 0.8;
+  border-radius: 5px;
+  padding: 5px;
+}
+#textarea:focus {
+  outline: none;
+}
+.button {
+  display: inline;
+  background-color: #04dcf8;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 2px;
+  font-size: 12px;
+}
+.button:hover {
+  cursor: pointer;
+  background-color: #bbecf3;
+}
