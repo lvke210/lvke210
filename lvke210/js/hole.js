@@ -9,16 +9,12 @@ function getHoleList() {
         let str = "";
         let block;
         str += `
-              <div class="block-title"></div>
-              <div class="flex block-content">
-                <div class="block-left">
-                  <img src="https://picsum.photos/200/150?random=${item.id}" alt="" />
-                </div>
-                <div class="block-right">${item.content}</div>
+              <div class="flex block-content" >
+                <div class="block-right" style="text-align:left;padding-left:30px">${
+                  item.content
+                }</div>
               </div>
-              <div class="block-footer">----------------${formatDate(
-                new Date(item.create_time)
-              )}---</div>
+              <div class="block-footer">---${formatDate(new Date(item.create_time))}---</div>
         `;
         block = document.createElement("div");
         block.className = "block";

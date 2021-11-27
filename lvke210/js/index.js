@@ -24,7 +24,7 @@ window.onscroll = () => {
     if (isBottom(50) && home.className === "content act") {
       getJoke();
     }
-  }, 1000);
+  }, 500);
   totop.style.display = document.documentElement.scrollTop > 300 ? "block" : "none";
 };
 
@@ -104,8 +104,6 @@ totop.addEventListener("click", function () {
 //点击之后才会播放背景音乐
 window.onclick = () => {
   audio.play();
-  console.log(window.location.href);
-  console.log(home.className);
 };
 
 //开关灯效果

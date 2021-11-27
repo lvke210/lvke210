@@ -70,7 +70,6 @@ app.listen(3000, () => {
 app.get("/api/getHoleList", (req, res) => {
   const sql = "select * from t_hole order by id desc";
   db(sql).then((ress) => {
-    console.log(ress);
     res.send(ress);
   });
 });
