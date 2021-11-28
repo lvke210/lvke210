@@ -5,12 +5,12 @@ function getHoleList() {
   fetch(`${host}/api/getHoleList`)
     .then((res) => res.json())
     .then((res) => {
-      res.map((item) => {
+      res?.data?.map((item) => {
         let str = "";
         let block;
         str += `
               <div class="flex block-content" >
-                <div class="block-right" style="text-align:left;padding-left:30px">${
+                <div class="block-right" style="text-align:left;padding-left:30px;white-space:pre-wrap">${
                   item.content
                 }</div>
               </div>
