@@ -10,7 +10,7 @@ function message() {
 }
 
 // 原生js时间格式化
-function formatDate(date, fmt = "yyyy-MM-dd hh:mm:ss") {
+export const formatDate = function formatDate(date, fmt = "yyyy-MM-dd hh:mm:ss") {
   if (/(y+)/.test(fmt)) {
     fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
   }
@@ -28,7 +28,7 @@ function formatDate(date, fmt = "yyyy-MM-dd hh:mm:ss") {
     }
   });
   return fmt;
-}
+};
 function padLeftZero(str) {
   return ("00" + str).substr(str.length);
 }

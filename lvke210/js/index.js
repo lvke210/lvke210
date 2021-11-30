@@ -14,7 +14,7 @@ for (let i = 0; i < child.length; i++) {
 let jokeList = []; //
 let num = 1; //请求随机图片的计数
 let timer;
-
+let music = true;
 window.onscroll = () => {
   if (timer) {
     clearTimeout(timer);
@@ -105,7 +105,13 @@ totop.addEventListener("click", function () {
 window.onclick = () => {
   audio.play();
 };
-
+// 切换Bgm
+img.addEventListener("click", () => {
+  audio.paused;
+  audio.src = !music ? "./static/The Ludlows.mp3" : "./static/Aloha Heja He.mp3";
+  music = !music;
+  audio.play();
+});
 //开关灯效果
 let moon = false;
 

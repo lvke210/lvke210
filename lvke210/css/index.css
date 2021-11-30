@@ -342,3 +342,9 @@ html {
     opacity: 0;
   }
 }
+#img {
+  position: relative;
+}
+#img:hover {
+  cursor: pointer;
+}
