@@ -5,7 +5,8 @@ const user = require("../manage/user");
 const blog = require("../manage/blog");
 // 判断用户信息是否存在
 router.get("/getPhone", async (req, res) => {
-  const userInfo = await user.getUserByPhone("32432432");
+  const phone = req.body;
+  const userInfo = await user.getUserByPhone(phone);
   res.send(userInfo);
 });
 

@@ -1,3 +1,4 @@
+import { message } from "./utils";
 const wrap = document.querySelector(".wrap");
 const child = document.querySelector(".childbar").getElementsByTagName("div");
 const content = document.querySelectorAll(".content");
@@ -15,6 +16,13 @@ let jokeList = []; //
 let num = 1; //请求随机图片的计数
 let timer;
 let music = true;
+
+let userInfo = JSON.parse(localStorage.getItem("userInfo")) ?? {};
+if (Object.keys(userInfo).length === 0) {
+  show_login_btn.innerHTML = "登陆/注册";
+} else {
+  show_login_btn.innerHTML = userInfo.userName;
+}
 window.onscroll = () => {
   if (timer) {
     clearTimeout(timer);
@@ -133,3 +141,24 @@ function drop(event) {
 function dragover(event) {
   event.preventDefault();
 }
+
+show_login_btn.addEventListener("click", () => {
+  login.style.display = "block";
+});
+close_btn.addEventListener("click", () => {
+  login.style.display = "none";
+});
+
+login_btn.addEventListener("click", () => {
+  userInfo = {
+    userName: userName_ipt.value,
+    passworld: password_ipt.value,
+  };
+  localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  message("登陆成功");
+  show_login_btn.innerHTML = userInfo.userName;
+  login.style.display = "none";
+});
+register_btn.addEventListener("click", () => {
+  console.log(localStorage.getItem("userInfo"));
+});

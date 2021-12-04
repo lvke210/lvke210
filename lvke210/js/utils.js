@@ -1,12 +1,12 @@
 // 模仿 message 弹窗
-function message() {
+export function message(msg = "操作成功") {
   const div = document.createElement("div");
   div.className = "message";
-  div.innerHTML = "扔进去啦";
+  div.innerHTML = msg;
   document.body.appendChild(div);
   setTimeout(() => {
     document.body.removeChild(div);
-  }, 3000);
+  }, 5000);
 }
 
 // 原生js时间格式化

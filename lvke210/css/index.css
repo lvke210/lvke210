@@ -38,12 +38,12 @@ html {
   height: 80px;
   line-height: 80px;
 }
-.bar input {
+#search_btn {
   border-radius: 5px;
   border: none;
   padding: 0 5px;
 }
-.bar input:focus {
+#search_btn:focus {
   outline: none;
 }
 .childbar {
@@ -323,7 +323,7 @@ html {
   background-color: rgb(134, 218, 139);
   padding: 5px 10px;
   border-radius: 5px;
-  animation: appear 3s linear 1;
+  animation: appear 5s linear 1;
 }
 @keyframes appear {
   0% {
@@ -347,4 +347,55 @@ html {
 }
 #img:hover {
   cursor: pointer;
+}
+
+#show_login_btn {
+  cursor: pointer;
+}
+#login {
+  position: absolute;
+  top: 30vh;
+  left: 40vw;
+  width: 20vw;
+  height: 22vh;
+  display: none;
+  background-color: rgb(119, 115, 115);
+  transition: 1s;
+  padding: 40px;
+  border-radius: 5px;
+  opacity: 0.9;
+}
+#close_btn {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: 0.5s;
+  text-align: center;
+  color: #fff;
+}
+#close_btn:hover {
+  transform: rotateZ(180deg);
+}
+#login input {
+  border: none;
+  outline: none;
+  width: 100%;
+  border-radius: 2px;
+  padding: 2px 10px;
+  word-spacing: 2px;
+}
+.login_btn_wrap {
+  display: flex;
+  justify-content: space-evenly;
+}
+.login_btn_wrap div {
+  background-color: rgb(48, 49, 49);
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 10px;
+  line-height: 30px;
+  color: white;
 }

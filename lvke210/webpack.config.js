@@ -13,9 +13,11 @@ module.exports = {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"), // 必须绝对路径
   },
+  target: "web",
   devServer: {
+    hot: true,
     static: {
-      directory: path.join(__dirname, "/dist"),
+      directory: path.join(__dirname, "/"),
     },
     compress: true,
     port: 9000,
