@@ -25,6 +25,7 @@ app.use(cors());
 
 //静态资源
 app.use("/static", express.static(__dirname + "/static"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 //  应该是配置全局中间件 解析json格式数据
 app.use(express.json()); // 这个是express内置中间件
