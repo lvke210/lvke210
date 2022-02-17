@@ -92,6 +92,29 @@ router.get("/getHoleList", (req, res) => {
     });
   });
 });
+// 获取文章列表信息
+router.get("/getArticleList", (req, res) => {
+  const sql = "select * from t_article order by id desc";
+  db(sql).then((ress) => {
+    res.send({
+      status: 0,
+      msg: "请求成功",
+      data: ress,
+    });
+  });
+});
+//新增文章
+router.post("/addArticle", (req, res) => {
+  const sql = " insert into t_article set ?";
+  db(sql, req.body).then((result) => {
+    res.send({
+      status: 0,
+      msg: "请求成功",
+      data: result,
+    });
+  });
+});
+
 //新增留言
 router.post("/addHole", (req, res) => {
   const sql = " insert into t_hole set ?";
