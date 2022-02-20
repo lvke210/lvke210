@@ -7,6 +7,9 @@ const multer = require("multer");
 const path = require("path");
 const token = require("../manage/token");
 
+const BASE_URL = "http://lvke210.com"; //线上
+// const BASE_URL = "http://localhost:3008"; //开发
+
 //注册
 router.post("/register", (req, res) => {
   const { name, password } = req.body;
@@ -144,7 +147,8 @@ router.get("/delHole", (req, res) => {
 const storage = multer.diskStorage({
   //文件存储位置
   destination: (req, file, cb) => {
-    cb(null, path.resolve(__dirname, "../uploads"));
+    // cb(null, path.resolve(__dirname, "../uploads"));
+    cb(null, path.resolve(__dirname, "../../lvke210/uploads"));
   },
   //文件名
   filename: (req, file, cb) => {
@@ -172,7 +176,10 @@ router.post("/profile", function (req, res, next) {
     }
     console.log(req.files, "req.files");
     const sql = " insert into files set ?";
-    const param = { url: `/uploads/${uploadFile.filename}`, name: req.files[0]?.originalname };
+    const param = {
+      url: `${BASE_URL}/uploads/${req.files[0]?.originalname}`,
+      name: req.files[0]?.originalname,
+    };
     db(sql, param).then(() => {
       res.send({
         status: 0,
@@ -181,6 +188,17 @@ router.post("/profile", function (req, res, next) {
       });
     });
     // res.send(req.files);
+  });
+});
+// 获取文章列表信息
+router.get("/getFiles", (req, res) => {
+  const sql = "select * from files order by id desc";
+  db(sql).then((ress) => {
+    res.send({
+      status: 0,
+      msg: "请求成功",
+      data: ress,
+    });
   });
 });
 
