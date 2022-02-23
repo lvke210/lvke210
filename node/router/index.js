@@ -97,8 +97,13 @@ router.get("/getHoleList", (req, res) => {
 });
 // 获取文章列表信息
 router.get("/getArticleList", (req, res) => {
+  console.log("获取文章列表信息");
   const sql = "select * from t_article order by id desc";
+
   db(sql).then((ress) => {
+    // res.writeHead(200, {
+    //   Expires: new Date("2023-1-1 11:11:11").toUTCString(),
+    // });
     res.send({
       status: 0,
       msg: "请求成功",
@@ -190,7 +195,7 @@ router.post("/profile", function (req, res, next) {
     // res.send(req.files);
   });
 });
-// 获取文章列表信息
+// 获取文件列表信息
 router.get("/getFiles", (req, res) => {
   const sql = "select * from files order by id desc";
   db(sql).then((ress) => {

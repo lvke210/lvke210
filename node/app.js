@@ -8,17 +8,19 @@ const express = require("express");
 const app = express();
 var bodyParser = require("body-parser");
 //配置全局中间件 设置请求头 允许跨域
-// app.all("*", function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Content-Type,Content-Length, Authorization, Accept,X-Requested-With"
-//   );
-//   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-//   res.header("X-Powered-By", " 3.2.1");
-//   if (req.method == "OPTIONS") res.sendStatus(200);
-//   /*让options请求快速返回*/ else next();
-// });
+app.all("*", function (req, res, next) {
+  // res.header("Access-Control-Allow-Origin", "*");
+  // res.header(
+  //   "Access-Control-Allow-Headers",
+  //   "Content-Type,Content-Length, Authorization, Accept,X-Requested-With"
+  // );
+  // res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  // res.header("X-Powered-By", " 3.2.1");
+  res.header("cache-control", "max-age=10");
+  // res.header("Expires", new Date("2023-1-1 11:11:11").toUTCString());
+  if (req.method == "OPTIONS") res.sendStatus(200);
+  /*让options请求快速返回*/ else next();
+});
 //外部中间件解决跨域
 const cors = require("cors");
 app.use(cors());
