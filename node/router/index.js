@@ -77,11 +77,15 @@ router.get("/getPhone", async (req, res) => {
 });
 
 // 获取用户信息
-router.get("/user", (req, res) => {
-  const sql = "select * from t_user";
-  db(sql).then((ress) => {
-    res.send(ress);
-  });
+// router.get("/user", (req, res) => {
+//   const sql = "select * from t_user";
+//   db(sql).then((ress) => {
+//     res.send(ress);
+//   });
+// });
+router.get("/user", async (req, res) => {
+  const userList = await user.getUser();
+  res.send(userList);
 });
 
 // 获取树洞列表信息
